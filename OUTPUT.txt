@@ -1,0 +1,266 @@
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+===== RESTART: C:\Users\aadit\Documents\maze solver\maze_solver_no_live.py =====
+Using GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+mazes_train.npz: key 'grids', shape (4000, 41, 41), dtype int8
+   values found: [0 1]
+   wall fraction: 0.42 (normal mazes are roughly 0.5-0.7)
+mazes_val.npz: key 'grids', shape (500, 41, 41), dtype int8
+   values found: [0 1]
+   wall fraction: 0.42 (normal mazes are roughly 0.5-0.7)
+Maze grid 41x41 | train 4000 | val 500
+Model is running on: cuda
+
+=== Start 5.0% of the way back from the goal (last passed: 0.0%, jump size 5.0%) ===
+  chunk 1: solved 100% | steps vs shortest 3.45x | total 10240 | 0.2 min
+  passed
+
+=== Start 12.5% of the way back from the goal (last passed: 5.0%, jump size 7.5%) ===
+  chunk 1: solved 90% | steps vs shortest 2.31x | total 20480 | 0.3 min
+  passed
+
+=== Start 23.8% of the way back from the goal (last passed: 12.5%, jump size 11.3%) ===
+  chunk 1: solved 75% | steps vs shortest 2.50x | total 30720 | 0.6 min
+  chunk 2: solved 68% | steps vs shortest 2.10x | total 40960 | 0.9 min
+  chunk 3: solved 62% | steps vs shortest 2.02x | total 51200 | 1.2 min
+  chunk 4: solved 65% | steps vs shortest 1.96x | total 61440 | 1.4 min
+  chunk 5: solved 68% | steps vs shortest 2.51x | total 71680 | 1.7 min
+  chunk 6: solved 70% | steps vs shortest 2.04x | total 81920 | 1.9 min
+  chunk 7: solved 73% | steps vs shortest 2.19x | total 92160 | 2.2 min
+  chunk 8: solved 68% | steps vs shortest 2.29x | total 102400 | 2.4 min
+  chunk 9: solved 78% | steps vs shortest 2.21x | total 112640 | 2.7 min
+  chunk 10: solved 70% | steps vs shortest 2.65x | total 122880 | 3.0 min
+  chunk 11: solved 77% | steps vs shortest 2.65x | total 133120 | 3.2 min
+  chunk 12: solved 78% | steps vs shortest 2.32x | total 143360 | 3.5 min
+  chunk 13: solved 75% | steps vs shortest 2.37x | total 153600 | 3.7 min
+  chunk 14: solved 68% | steps vs shortest 2.03x | total 163840 | 4.0 min
+  chunk 15: solved 77% | steps vs shortest 2.23x | total 174080 | 4.2 min
+  chunk 16: solved 73% | steps vs shortest 2.12x | total 184320 | 4.4 min
+  chunk 17: solved 77% | steps vs shortest 2.32x | total 194560 | 4.7 min
+  chunk 18: solved 85% | steps vs shortest 2.36x | total 204800 | 4.9 min
+  passed
+
+=== Start 38.8% of the way back from the goal (last passed: 23.8%, jump size 15.0%) ===
+  chunk 1: solved 60% | steps vs shortest 3.42x | total 215040 | 5.2 min
+  chunk 2: solved 67% | steps vs shortest 2.83x | total 225280 | 5.6 min
+  chunk 3: solved 58% | steps vs shortest 2.64x | total 235520 | 5.9 min
+  chunk 4: solved 62% | steps vs shortest 2.59x | total 245760 | 6.2 min
+  chunk 5: solved 55% | steps vs shortest 3.44x | total 256000 | 6.6 min
+  chunk 6: solved 63% | steps vs shortest 2.60x | total 266240 | 6.9 min
+  chunk 7: solved 67% | steps vs shortest 2.74x | total 276480 | 7.3 min
+  chunk 8: solved 60% | steps vs shortest 2.47x | total 286720 | 7.6 min
+  chunk 9: solved 62% | steps vs shortest 2.55x | total 296960 | 7.9 min
+  chunk 10: solved 68% | steps vs shortest 2.55x | total 307200 | 8.3 min
+  chunk 11: solved 67% | steps vs shortest 2.53x | total 317440 | 8.6 min
+  chunk 12: solved 65% | steps vs shortest 2.82x | total 327680 | 8.9 min
+  chunk 13: solved 58% | steps vs shortest 2.72x | total 337920 | 9.2 min
+  chunk 14: solved 47% | steps vs shortest 2.93x | total 348160 | 9.6 min
+  chunk 15: solved 70% | steps vs shortest 2.92x | total 358400 | 10.0 min
+  chunk 16: solved 65% | steps vs shortest 2.72x | total 368640 | 10.3 min
+  chunk 17: solved 60% | steps vs shortest 3.05x | total 378880 | 10.7 min
+  chunk 18: solved 58% | steps vs shortest 2.82x | total 389120 | 11.0 min
+  chunk 19: solved 72% | steps vs shortest 2.73x | total 399360 | 11.8 min
+  chunk 20: solved 57% | steps vs shortest 2.40x | total 409600 | 12.6 min
+  did not reach pass rate. Going back to 23.8% and trying a smaller jump to 31.3%
+
+=== Start 31.3% of the way back from the goal (last passed: 23.8%, jump size 7.5%) ===
+  chunk 1: solved 67% | steps vs shortest 2.17x | total 419840 | 13.2 min
+  chunk 2: solved 72% | steps vs shortest 2.22x | total 430080 | 13.7 min
+  chunk 3: solved 68% | steps vs shortest 2.31x | total 440320 | 14.3 min
+  chunk 4: solved 72% | steps vs shortest 2.40x | total 450560 | 14.9 min
+  chunk 5: solved 68% | steps vs shortest 2.51x | total 460800 | 15.4 min
+  chunk 6: solved 70% | steps vs shortest 2.07x | total 471040 | 16.0 min
+  chunk 7: solved 70% | steps vs shortest 2.31x | total 481280 | 16.5 min
+  chunk 8: solved 68% | steps vs shortest 2.27x | total 491520 | 17.1 min
+  chunk 9: solved 70% | steps vs shortest 2.25x | total 501760 | 17.6 min
+  chunk 10: solved 62% | steps vs shortest 2.27x | total 512000 | 18.2 min
+  chunk 11: solved 67% | steps vs shortest 2.07x | total 522240 | 18.7 min
+  chunk 12: solved 72% | steps vs shortest 2.19x | total 532480 | 19.5 min
+  chunk 13: solved 72% | steps vs shortest 2.19x | total 542720 | 20.2 min
+  chunk 14: solved 70% | steps vs shortest 2.16x | total 552960 | 20.8 min
+  chunk 15: solved 75% | steps vs shortest 2.23x | total 563200 | 21.3 min
+  chunk 16: solved 73% | steps vs shortest 2.31x | total 573440 | 22.0 min
+  chunk 17: solved 75% | steps vs shortest 2.28x | total 583680 | 22.6 min
+  chunk 18: solved 77% | steps vs shortest 2.29x | total 593920 | 23.2 min
+  chunk 19: solved 72% | steps vs shortest 2.27x | total 604160 | 23.7 min
+  chunk 20: solved 80% | steps vs shortest 2.19x | total 614400 | 24.3 min
+  did not reach pass rate. Going back to 23.8% and trying a smaller jump to 27.5%
+
+=== Start 27.5% of the way back from the goal (last passed: 23.8%, jump size 3.8%) ===
+  chunk 1: solved 78% | steps vs shortest 1.99x | total 624640 | 24.7 min
+  chunk 2: solved 67% | steps vs shortest 2.16x | total 634880 | 25.3 min
+  chunk 3: solved 82% | steps vs shortest 1.84x | total 645120 | 25.8 min
+  chunk 4: solved 72% | steps vs shortest 2.05x | total 655360 | 26.3 min
+  chunk 5: solved 82% | steps vs shortest 1.97x | total 665600 | 26.8 min
+  chunk 6: solved 78% | steps vs shortest 2.03x | total 675840 | 27.4 min
+  chunk 7: solved 78% | steps vs shortest 2.06x | total 686080 | 27.8 min
+  chunk 8: solved 80% | steps vs shortest 2.03x | total 696320 | 28.3 min
+  chunk 9: solved 83% | steps vs shortest 2.17x | total 706560 | 28.8 min
+  chunk 10: solved 82% | steps vs shortest 1.92x | total 716800 | 29.3 min
+  chunk 11: solved 83% | steps vs shortest 1.93x | total 727040 | 29.7 min
+  chunk 12: solved 80% | steps vs shortest 1.90x | total 737280 | 30.2 min
+  chunk 13: solved 87% | steps vs shortest 2.06x | total 747520 | 30.7 min
+  passed
+
+=== Start 33.1% of the way back from the goal (last passed: 27.5%, jump size 5.6%) ===
+  chunk 1: solved 80% | steps vs shortest 2.18x | total 757760 | 31.2 min
+  chunk 2: solved 82% | steps vs shortest 2.09x | total 768000 | 31.8 min
+  chunk 3: solved 68% | steps vs shortest 2.30x | total 778240 | 32.4 min
+  chunk 4: solved 68% | steps vs shortest 2.18x | total 788480 | 33.0 min
+  chunk 5: solved 68% | steps vs shortest 2.10x | total 798720 | 33.6 min
+  chunk 6: solved 60% | steps vs shortest 1.96x | total 808960 | 34.2 min
+  chunk 7: solved 75% | steps vs shortest 2.09x | total 819200 | 34.8 min
+  chunk 8: solved 77% | steps vs shortest 1.87x | total 829440 | 35.3 min
+  chunk 9: solved 80% | steps vs shortest 1.91x | total 839680 | 35.8 min
+  chunk 10: solved 68% | steps vs shortest 2.22x | total 849920 | 36.4 min
+  chunk 11: solved 75% | steps vs shortest 2.39x | total 860160 | 37.0 min
+  chunk 12: solved 78% | steps vs shortest 2.14x | total 870400 | 37.5 min
+  chunk 13: solved 73% | steps vs shortest 2.26x | total 880640 | 38.1 min
+  chunk 14: solved 73% | steps vs shortest 2.17x | total 890880 | 38.7 min
+  chunk 15: solved 73% | steps vs shortest 2.13x | total 901120 | 39.3 min
+  chunk 16: solved 73% | steps vs shortest 2.45x | total 911360 | 39.9 min
+  chunk 17: solved 78% | steps vs shortest 2.15x | total 921600 | 40.4 min
+  chunk 18: solved 80% | steps vs shortest 2.21x | total 931840 | 40.9 min
+  chunk 19: solved 82% | steps vs shortest 2.02x | total 942080 | 41.5 min
+  chunk 20: solved 80% | steps vs shortest 2.03x | total 952320 | 42.0 min
+  did not reach pass rate. Going back to 27.5% and trying a smaller jump to 30.3%
+
+=== Start 30.3% of the way back from the goal (last passed: 27.5%, jump size 2.8%) ===
+  chunk 1: solved 80% | steps vs shortest 2.23x | total 962560 | 42.5 min
+  chunk 2: solved 80% | steps vs shortest 1.79x | total 972800 | 43.0 min
+  chunk 3: solved 85% | steps vs shortest 2.05x | total 983040 | 43.3 min
+  passed
+
+=== Start 34.5% of the way back from the goal (last passed: 30.3%, jump size 4.2%) ===
+  chunk 1: solved 78% | steps vs shortest 2.44x | total 993280 | 43.6 min
+  chunk 2: solved 70% | steps vs shortest 2.05x | total 1003520 | 43.8 min
+  chunk 3: solved 78% | steps vs shortest 1.80x | total 1013760 | 44.1 min
+  chunk 4: solved 80% | steps vs shortest 2.18x | total 1024000 | 44.4 min
+  chunk 5: solved 78% | steps vs shortest 2.29x | total 1034240 | 44.7 min
+  chunk 6: solved 75% | steps vs shortest 2.05x | total 1044480 | 44.9 min
+  chunk 7: solved 70% | steps vs shortest 1.78x | total 1054720 | 45.3 min
+  chunk 8: solved 83% | steps vs shortest 2.06x | total 1064960 | 45.5 min
+  chunk 9: solved 73% | steps vs shortest 1.81x | total 1075200 | 45.8 min
+  chunk 10: solved 85% | steps vs shortest 2.03x | total 1085440 | 46.1 min
+  passed
+
+=== Start 40.8% of the way back from the goal (last passed: 34.5%, jump size 6.3%) ===
+  chunk 1: solved 60% | steps vs shortest 2.20x | total 1095680 | 46.4 min
+  chunk 2: solved 67% | steps vs shortest 2.17x | total 1105920 | 46.7 min
+  chunk 3: solved 70% | steps vs shortest 2.34x | total 1116160 | 47.0 min
+  chunk 4: solved 75% | steps vs shortest 2.08x | total 1126400 | 47.3 min
+  chunk 5: solved 77% | steps vs shortest 2.14x | total 1136640 | 47.6 min
+  chunk 6: solved 72% | steps vs shortest 2.01x | total 1146880 | 47.9 min
+  chunk 7: solved 60% | steps vs shortest 1.70x | total 1157120 | 48.2 min
+  chunk 8: solved 63% | steps vs shortest 1.74x | total 1167360 | 48.5 min
+  chunk 9: solved 72% | steps vs shortest 2.00x | total 1177600 | 48.8 min
+  chunk 10: solved 75% | steps vs shortest 1.99x | total 1187840 | 49.1 min
+  chunk 11: solved 68% | steps vs shortest 2.11x | total 1198080 | 49.4 min
+  chunk 12: solved 73% | steps vs shortest 1.75x | total 1208320 | 49.6 min
+  chunk 13: solved 73% | steps vs shortest 2.02x | total 1218560 | 49.9 min
+  chunk 14: solved 75% | steps vs shortest 1.76x | total 1228800 | 50.3 min
+  chunk 15: solved 80% | steps vs shortest 1.56x | total 1239040 | 50.5 min
+  chunk 16: solved 77% | steps vs shortest 1.80x | total 1249280 | 50.8 min
+  chunk 17: solved 95% | steps vs shortest 1.97x | total 1259520 | 51.0 min
+  passed
+
+=== Start 50.3% of the way back from the goal (last passed: 40.8%, jump size 9.5%) ===
+  chunk 1: solved 72% | steps vs shortest 1.89x | total 1269760 | 51.3 min
+  chunk 2: solved 72% | steps vs shortest 2.11x | total 1280000 | 51.7 min
+  chunk 3: solved 68% | steps vs shortest 2.16x | total 1290240 | 52.0 min
+  chunk 4: solved 67% | steps vs shortest 2.21x | total 1300480 | 52.4 min
+  chunk 5: solved 77% | steps vs shortest 2.12x | total 1310720 | 52.7 min
+  chunk 6: solved 67% | steps vs shortest 2.40x | total 1320960 | 53.1 min
+  chunk 7: solved 63% | steps vs shortest 2.57x | total 1331200 | 53.4 min
+  chunk 8: solved 80% | steps vs shortest 2.08x | total 1341440 | 53.8 min
+  chunk 9: solved 67% | steps vs shortest 2.36x | total 1351680 | 54.1 min
+  chunk 10: solved 58% | steps vs shortest 2.40x | total 1361920 | 54.5 min
+  chunk 11: solved 63% | steps vs shortest 2.68x | total 1372160 | 54.8 min
+  chunk 12: solved 63% | steps vs shortest 2.48x | total 1382400 | 55.2 min
+  chunk 13: solved 73% | steps vs shortest 2.19x | total 1392640 | 55.5 min
+  chunk 14: solved 83% | steps vs shortest 2.00x | total 1402880 | 55.8 min
+  chunk 15: solved 83% | steps vs shortest 2.12x | total 1413120 | 56.1 min
+  chunk 16: solved 78% | steps vs shortest 2.09x | total 1423360 | 56.5 min
+  chunk 17: solved 73% | steps vs shortest 2.21x | total 1433600 | 56.8 min
+  chunk 18: solved 85% | steps vs shortest 1.97x | total 1443840 | 57.1 min
+  passed
+
+=== Start 64.5% of the way back from the goal (last passed: 50.3%, jump size 14.2%) ===
+  chunk 1: solved 63% | steps vs shortest 1.99x | total 1454080 | 57.5 min
+  chunk 2: solved 57% | steps vs shortest 2.03x | total 1464320 | 57.9 min
+  chunk 3: solved 55% | steps vs shortest 1.96x | total 1474560 | 58.4 min
+  chunk 4: solved 73% | steps vs shortest 2.16x | total 1484800 | 58.8 min
+  chunk 5: solved 68% | steps vs shortest 2.42x | total 1495040 | 59.2 min
+  chunk 6: solved 62% | steps vs shortest 2.50x | total 1505280 | 59.6 min
+  chunk 7: solved 70% | steps vs shortest 2.20x | total 1515520 | 60.0 min
+  chunk 8: solved 77% | steps vs shortest 2.26x | total 1525760 | 60.4 min
+  chunk 9: solved 67% | steps vs shortest 2.06x | total 1536000 | 60.8 min
+  chunk 10: solved 73% | steps vs shortest 2.40x | total 1546240 | 61.2 min
+  chunk 11: solved 67% | steps vs shortest 2.03x | total 1556480 | 61.6 min
+  chunk 12: solved 60% | steps vs shortest 2.17x | total 1566720 | 62.1 min
+  chunk 13: solved 68% | steps vs shortest 2.04x | total 1576960 | 62.5 min
+  chunk 14: solved 57% | steps vs shortest 2.11x | total 1587200 | 62.9 min
+  chunk 15: solved 82% | steps vs shortest 2.14x | total 1597440 | 63.2 min
+  chunk 16: solved 73% | steps vs shortest 2.25x | total 1607680 | 63.7 min
+  chunk 17: solved 78% | steps vs shortest 2.42x | total 1617920 | 64.1 min
+  chunk 18: solved 75% | steps vs shortest 2.14x | total 1628160 | 64.5 min
+  chunk 19: solved 85% | steps vs shortest 2.22x | total 1638400 | 64.8 min
+  passed
+
+=== Start 79.5% of the way back from the goal (last passed: 64.5%, jump size 15.0%) ===
+  chunk 1: solved 70% | steps vs shortest 2.38x | total 1648640 | 65.3 min
+  chunk 2: solved 68% | steps vs shortest 2.16x | total 1658880 | 65.8 min
+  chunk 3: solved 70% | steps vs shortest 2.14x | total 1669120 | 66.2 min
+  chunk 4: solved 68% | steps vs shortest 2.54x | total 1679360 | 66.7 min
+  chunk 5: solved 68% | steps vs shortest 2.52x | total 1689600 | 67.2 min
+  chunk 6: solved 67% | steps vs shortest 2.20x | total 1699840 | 67.7 min
+  chunk 7: solved 75% | steps vs shortest 2.06x | total 1710080 | 68.1 min
+  chunk 8: solved 67% | steps vs shortest 2.08x | total 1720320 | 68.6 min
+  chunk 9: solved 85% | steps vs shortest 2.35x | total 1730560 | 69.0 min
+  passed
+
+=== Start 94.5% of the way back from the goal (last passed: 79.5%, jump size 15.0%) ===
+  chunk 1: solved 73% | steps vs shortest 2.34x | total 1740800 | 69.5 min
+  chunk 2: solved 67% | steps vs shortest 2.65x | total 1751040 | 70.1 min
+  chunk 3: solved 77% | steps vs shortest 2.54x | total 1761280 | 70.7 min
+  chunk 4: solved 68% | steps vs shortest 2.43x | total 1771520 | 71.3 min
+  chunk 5: solved 65% | steps vs shortest 2.49x | total 1781760 | 71.8 min
+  chunk 6: solved 73% | steps vs shortest 2.34x | total 1792000 | 72.3 min
+  chunk 7: solved 77% | steps vs shortest 2.11x | total 1802240 | 72.8 min
+  chunk 8: solved 68% | steps vs shortest 2.09x | total 1812480 | 73.3 min
+  chunk 9: solved 85% | steps vs shortest 2.19x | total 1822720 | 73.8 min
+  passed
+
+=== Start 100.0% of the way back from the goal (last passed: 94.5%, jump size 15.0%) ===
+  chunk 1: solved 65% | steps vs shortest 2.54x | total 1832960 | 74.4 min
+  chunk 2: solved 67% | steps vs shortest 2.72x | total 1843200 | 75.0 min
+  chunk 3: solved 83% | steps vs shortest 2.47x | total 1853440 | 75.5 min
+  chunk 4: solved 82% | steps vs shortest 2.13x | total 1863680 | 76.0 min
+  chunk 5: solved 85% | steps vs shortest 2.04x | total 1873920 | 76.4 min
+  passed
+
+Reached the real entrance and passed. Training done.
+mazes_test.npz: key 'grids', shape (500, 41, 41), dtype int8
+   values found: [0 1]
+   wall fraction: 0.42 (normal mazes are roughly 0.5-0.7)
+
+FINAL TEST (real entrance, unseen mazes): solved 72% of 200 | 2.07x shortest. Saved maze_ppo_reverse.zip
+
+Exporting for deployment...
+
+Warning (from warnings module):
+  File "C:\Users\aadit\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\jit\_trace.py", line 1006
+    warnings.warn(
+FutureWarning: `torch.jit.trace` is deprecated. Please switch to `torch.compile` or `torch.export`.
+
+Warning (from warnings module):
+  File "C:\Users\aadit\AppData\Local\Programs\Python\Python313\Lib\site-packages\torch\jit\_trace.py", line 1145
+    warnings.warn(
+FutureWarning: `torch.jit.trace_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+Saved maze_export\maze_policy.pt (max difference vs original: 0.00e+00)
+(ONNX export skipped: No module named 'onnxscript'
+ If you want it: pip install onnx   then run --export again)
+Saved maze_export\meta.json
+
+Export done. Copy the whole 'maze_export' folder to deploy.

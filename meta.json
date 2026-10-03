@@ -1,0 +1,7 @@
+{
+  "height": 41,
+  "width": 41,
+  "input": "float32 (1, 4, H, W): ch0 walls(1=wall), ch1 agent position, ch2 goal position, ch3 visited tiles",
+  "output": "4 scores: 0=up, 1=down, 2=left, 3=right (softmax them, then sample)",
+  "one_is_wall": true
+}
