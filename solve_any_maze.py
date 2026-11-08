@@ -13,6 +13,7 @@ mazes of any width/height and in several formats:
 Useful options:
     --start R,C --goal R,C     set the endpoints yourself (row, column in the loaded grid)
     --algo bfs|astar|dijkstra  search algorithm (all return a shortest path)
+    --algo ppo                 the trained RL agent (maze_rl_any_size.py), BFS finishes if it gets stuck
     --out solution.png         where to save the picture of the solution
     --save-path path.npy       save the path as an (N, 2) array of (row, col)
     --ascii                    print the solved maze in the terminal (small mazes only)
@@ -326,6 +327,30 @@ def solve(walls, start, goal, algo="bfs", centre=False):
     return solve_bfs(walls, start, goal)
 
 
+def corridor_width(walls):
+    """Typical corridor width in tiles (short open runs that have a wall at both ends)."""
+    runs = []
+    for m in (walls, walls.T):
+        for row in m[:: max(1, m.shape[0] // 300)]:
+            edges = np.flatnonzero(np.diff(row.astype(np.int8)))
+            for a, b in zip(edges[:-1], edges[1:]):
+                if row[a] and not row[a + 1]:  # wall -> open ... -> wall
+                    runs.append(b - a)
+    return float(np.percentile(runs, 20)) if runs else 1.0
+
+
+def shrink_for_agent(maze, start, goal):
+    """The PPO agent is trained on corridors 1-3 tiles wide; shrink wider ones (e.g. pictures)."""
+    k = max(1, int(corridor_width(maze.walls) // 2))
+    if k == 1:
+        return maze, start, goal
+    H, W = (maze.shape[0] // k) * k, (maze.shape[1] // k) * k
+    walls = maze.walls[:H, :W].reshape(H // k, k, W // k, k).any(axis=(1, 3))
+    small = Maze(walls, image=maze.image, offset=maze.offset, scale=maze.scale * k)
+    fix = lambda p: nearest_free(walls, (min(p[0] // k, walls.shape[0] - 1), min(p[1] // k, walls.shape[1] - 1)))
+    return small, fix(start), fix(goal)
+
+
 def path_to_actions(path):
     lookup = {v: k for k, v in MOVES.items()}
     return [lookup[(b[0] - a[0], b[1] - a[1])] for a, b in zip(path, path[1:])]
@@ -384,7 +409,11 @@ def main(argv=None):
     ap.add_argument("--index", type=int, default=0, help="which maze inside an .npz dataset")
     ap.add_argument("--start", type=parse_point, help="start as ROW,COL")
     ap.add_argument("--goal", type=parse_point, help="goal as ROW,COL")
-    ap.add_argument("--algo", choices=["bfs", "astar", "dijkstra"], default="bfs")
+    ap.add_argument("--algo", choices=["bfs", "astar", "dijkstra", "ppo"], default="bfs",
+                    help="ppo = the trained RL agent (any maze size), with BFS as a back-up")
+    ap.add_argument("--model", default="maze_ppo_any_size", help="with --algo ppo: saved agent")
+    ap.add_argument("--max-steps", type=int, help="with --algo ppo: moves the agent may make before BFS helps")
+    ap.add_argument("--no-fallback", action="store_true", help="with --algo ppo: never let BFS help")
     ap.add_argument("--zero-is-wall", action="store_true", help="for 0/1 grids where 0 means wall")
     ap.add_argument("--max-side", type=int, default=1500, help="pictures larger than this are shrunk first")
     ap.add_argument("--no-centre", action="store_true", help="pictures: don't keep the path in the corridor middle")
@@ -413,16 +442,35 @@ def main(argv=None):
         maze.goal = args.goal
 
     start, goal = find_endpoints(maze)
-    t1 = time.time()
-    path = solve(maze.walls, start, goal, args.algo, centre=(maze.image is not None and not args.no_centre))
+    rl = None
+    if args.algo == "ppo":
+        from maze_rl_any_size import load_model, rl_solve
+        maze, start, goal = shrink_for_agent(maze, start, goal)
+        model = load_model(args.model)
+        t1 = time.time()
+        rl = rl_solve(model, maze.walls, start, goal, args.max_steps, fallback=not args.no_fallback)
+        path = rl["path"]
+    else:
+        t1 = time.time()
+        path = solve(maze.walls, start, goal, args.algo, centre=(maze.image is not None and not args.no_centre))
     t2 = time.time()
 
     H, W = maze.shape
     print(f"Maze: {name} | grid {H} x {W} ({H * W:,} cells) | start {start} -> goal {goal}")
+    if path is None and rl is not None and not rl["solved_by_agent"] and args.no_fallback:
+        print(f"The agent did not reach the goal in {rl['agent_steps']} moves (BFS back-up turned off).")
+        return 1
     if path is None:
         print(f"NO PATH: the goal cannot be reached from the start. (load {t1 - t0:.2f}s, search {t2 - t1:.2f}s)")
         return 1
     print(f"Solved with {args.algo}: {len(path) - 1} steps | load {t1 - t0:.2f}s, search {t2 - t1:.2f}s")
+    if rl is not None:
+        if rl["solved_by_agent"]:
+            print(f"The agent reached the goal on its own in {rl['agent_steps']} moves "
+                  f"(path after removing dead ends: {len(path) - 1} steps).")
+        else:
+            print(f"The agent made {rl['agent_steps']} moves without reaching the goal; BFS finished the route. "
+                  f"{rl['agent_share'] * 100:.0f}% of the final path came from the agent.")
 
     if args.out:
         draw_solution(maze, path, start, goal, args.out)

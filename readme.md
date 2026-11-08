@@ -168,6 +168,9 @@ Maze_solver/
 ├── test_solve_any_maze.py
 │   └── Tests for the any-size solver
 │
+├── maze_rl_any_size.py
+│   └── PPO agent that works on mazes of any size
+│
 ├── LICENSE
 │
 └── README.md
@@ -218,6 +221,39 @@ To make training data of other sizes, the generator now takes command-line optio
 python maze_genrator.py --width 120 --height 80 --count 1000
 python maze_genrator.py --width 300 --height 300 --single big_maze.npy
 ```
+
+---
+
+# 🤖 RL Agent for Any Maze Size
+
+`maze_rl_any_size.py` is a new PPO agent that runs on mazes of **any size**, not just 41 x 41.
+
+**What changed compared to the original agent:**
+
+| | Original (`maze_solver.py`) | Any-size (`maze_rl_any_size.py`) |
+|---|---|---|
+| What the agent sees | the whole 41 x 41 maze | a 21 x 21 window around itself + the direction and distance to the goal |
+| Input shape | depends on maze size | always `(6, 21, 21)` |
+| Training mazes | one fixed dataset, one size | generated on the fly: 3-60 cells per side, corridors 1-3 wide, walls 1-2 thick, with or without loops, random start/goal, random flips |
+| Curriculum | start near the goal, move back | same, then the mazes get bigger |
+| If the agent gets stuck | episode fails | BFS finishes the route, so every solvable maze is solved |
+
+Observation channels: walls (outside the maze counts as wall), visit counts, the goal (if
+in view), goal direction (rows), goal direction (columns), log distance to the goal.
+
+```bash
+python maze_rl_any_size.py train                        # train (GPU if available), saves maze_ppo_any_size.zip
+python maze_rl_any_size.py train --resume               # keep training a saved model
+python maze_rl_any_size.py train --start-level 6 --resume   # continue from a curriculum level
+python maze_rl_any_size.py benchmark                    # agent alone vs BFS on 10..160-cell mazes
+python solve_any_maze.py maze.png --algo ppo            # agent solves any maze file
+python solve_any_maze.py --generate 300x200 --algo ppo --no-fallback   # agent only, no BFS help
+```
+
+Training prints, per curriculum level, the share of validation mazes solved and how long the
+agent's path is compared with the shortest one. Pictures are shrunk so their corridors are about
+2 cells wide before the agent sees them. `--max-steps` sets how many moves the agent gets
+before BFS takes over.
 
 ---
 
