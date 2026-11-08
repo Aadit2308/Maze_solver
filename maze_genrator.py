@@ -285,6 +285,34 @@ def verify(data, check=200):
 # Main
 # ==========================================================================
 if __name__ == "__main__":
+    # Every setting above can be overridden from the command line, e.g.
+    #   python maze_genrator.py --width 120 --height 80 --count 1000
+    #   python maze_genrator.py --width 300 --height 300 --single big_maze.npy
+    import argparse
+    ap = argparse.ArgumentParser(description="Generate mazes of any size.")
+    ap.add_argument("--width", type=int, default=WIDTH, help="cells across")
+    ap.add_argument("--height", type=int, default=HEIGHT, help="cells down")
+    ap.add_argument("--count", type=int, default=NUM_MAZES, help="number of mazes")
+    ap.add_argument("--corridor", type=int, default=CORRIDOR)
+    ap.add_argument("--wall", type=int, default=WALL_SIZE)
+    ap.add_argument("--loops", type=float, default=LOOP_PROB)
+    ap.add_argument("--rooms", type=int, default=ROOMS)
+    ap.add_argument("--seed", type=int, default=BASE_SEED)
+    ap.add_argument("--out-dir", default=OUT_DIR)
+    ap.add_argument("--images", type=int, default=NUM_SAMPLE_IMAGES)
+    ap.add_argument("--single", metavar="FILE.npy", help="save just one maze grid to this file and stop")
+    args = ap.parse_args()
+    WIDTH, HEIGHT, NUM_MAZES = args.width, args.height, args.count
+    CORRIDOR, WALL_SIZE, LOOP_PROB, ROOMS = args.corridor, args.wall, args.loops, args.rooms
+    BASE_SEED, OUT_DIR, NUM_SAMPLE_IMAGES = args.seed, args.out_dir, args.images
+
+    if args.single:
+        grid, start, goal = generate_maze(WIDTH, HEIGHT, seed=BASE_SEED, loop_prob=LOOP_PROB,
+                                          corridor=CORRIDOR, wall=WALL_SIZE, rooms=ROOMS, room_max=ROOM_MAX)
+        np.save(args.single, grid)
+        print(f"Saved {args.single}: grid {grid.shape[0]}x{grid.shape[1]}, start {start}, goal {goal}")
+        raise SystemExit
+
     print(f"Generating {NUM_MAZES} mazes ({WIDTH}x{HEIGHT} cells, corridor={CORRIDOR})...")
     data = generate_bulk(
         NUM_MAZES, WIDTH, HEIGHT, CORRIDOR, WALL_SIZE, LOOP_PROB,

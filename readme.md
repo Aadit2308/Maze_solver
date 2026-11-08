@@ -162,6 +162,12 @@ Maze_solver/
 ├── maze.txt
 │   └── Example maze representation
 │
+├── solve_any_maze.py
+│   └── Solves mazes of ANY size (pictures, .npy, .npz, .txt)
+│
+├── test_solve_any_maze.py
+│   └── Tests for the any-size solver
+│
 ├── LICENSE
 │
 └── README.md
@@ -170,6 +176,48 @@ Maze_solver/
 The current repository contains these files on the `main` branch.
 
 > **Note:** The existing generator filename is `maze_genrator.py`. The spelling is currently part of the repository, so the commands below use that exact filename.
+
+---
+
+# 🧭 Solve Any Maze of Any Size
+
+The PPO agent only works on the grid size it was trained on (41 x 41), because its
+CNN ends in a fixed-size `Flatten -> Linear` layer. To solve mazes of **any width and
+height**, use `solve_any_maze.py`. It does not need training, and it always returns a
+shortest path (or reports that the maze can't be solved).
+
+```bash
+python solve_any_maze.py maze.png                     # a picture of a maze, any resolution
+python solve_any_maze.py my_maze.npy                  # numpy grid, 1 = wall
+python solve_any_maze.py maze.txt --ascii             # text maze (█, #, S, E ...)
+python solve_any_maze.py mazes_test.npz --index 7     # one maze from a dataset
+python solve_any_maze.py --generate 500x300           # random 500 x 300-cell maze
+python solve_any_maze.py my_maze.npy --start 0,1 --goal 40,39 --algo astar
+```
+
+| Option | Meaning |
+|---|---|
+| `--algo bfs\|astar\|dijkstra` | Search algorithm. All three give a shortest path. |
+| `--start R,C` / `--goal R,C` | Set the endpoints yourself. |
+| `--out file.png` | Picture of the solution (default `solution.png`). |
+| `--save-path file.npy` | Save the path as an `(N, 2)` array of `(row, col)`. |
+| `--zero-is-wall` | For 0/1 grids where 0 means wall. |
+| `--max-side N` | Pictures bigger than N pixels are shrunk first (default 1500). |
+
+**How start and goal are found:** `--start/--goal` first, then markers in the file
+(`S`/`E` in text, red/green marks in pictures), then gaps in the outer wall (the gap
+nearest the top-left is the start, the one nearest the bottom-right is the goal), and
+finally the first and last open cells.
+
+**Speed:** with SciPy installed, BFS runs in compiled code. A 1-million-cell picture
+solves in under half a second. Without SciPy, it uses a pure-Python fallback.
+
+To make training data of other sizes, the generator now takes command-line options:
+
+```bash
+python maze_genrator.py --width 120 --height 80 --count 1000
+python maze_genrator.py --width 300 --height 300 --single big_maze.npy
+```
 
 ---
 
@@ -1930,13 +1978,13 @@ so a CUDA-capable GPU is expected for the configured training setup.
 Some useful future experiments would be:
 
 - [ ] Compare PPO against BFS
-- [ ] Compare PPO against A*
+- [x] Add A* (`solve_any_maze.py --algo astar`)
 - [ ] Compare PPO against Dijkstra
 - [ ] Add DQN
 - [ ] Add A2C
 - [ ] Remove BFS-based reward shaping
 - [ ] Compare curriculum vs no curriculum
-- [ ] Test different maze sizes
+- [x] Test different maze sizes (`solve_any_maze.py`)
 - [ ] Test unseen maze-generation algorithms
 - [ ] Add TensorBoard logging
 - [ ] Add training reward graphs
